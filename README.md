@@ -14,3 +14,11 @@ The alias can then be added to the dots of your favorite shell for future use (a
 dotfiles add /PATH/TO/FILE
 dotfiles commit -m "Add FILE"
 ```
+
+In order to use the .zshrc in its current location, $ZDOTDIR needs to be set to ~/.config/zsh.
+This can be done by editing ``/etc/security/pam_env.conf`` to include:
+```
+XDG_CONFIG_HOME DEFAULT=@{HOME}/.config
+ZDOTDIR         DEFAULT=${XDG_CONFIG_HOME}/zsh
+```
+
