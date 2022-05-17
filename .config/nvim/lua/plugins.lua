@@ -7,7 +7,21 @@ require('packer').startup(function()
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
 	-- Enable the lspconfig
-	use { 'neovim/nvim-lspconfig' }
+	use { 
+    "williamboman/nvim-lsp-installer",
+    {
+      'neovim/nvim-lspconfig',
+      config = function()
+        require("nvim-lsp-installer").setup{
+          automatic_installation = true
+        }
+        local lspconfig = require("lspconfig")
+        lspconfig.tsserver.setup{}
+        lspconfig.html.setup{}
+        lspconfig.svelte.setup{}
+      end
+    }
+  }
 
   -- Enable LuaSnip
   use 'L3MON4D3/LuaSnip'
@@ -15,11 +29,6 @@ require('packer').startup(function()
   -- Enable Ledger Support
   use 'ledger/vim-ledger'
 end)
-
--- Language Servers
-require('lspconfig').tsserver.setup{}
-require('lspconfig').html.setup{}
-require('lspconfig').svelte.setup{}
 
 -- Automatically run :PackerSync whenever plugins.lua is updated
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerSync]])
