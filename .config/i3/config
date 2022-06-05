@@ -251,6 +251,6 @@ exec "alacritty --config-file ~/.config/alacritty/dropdown.yml"
 bindsym F12 [instance="Alacritty Dropdown"] scratchpad show
 
 #Start Pipewire with i3
-exec pipewire
-exec pipewire-pulse
-exec pipewire-media-session
+exec --no-startup-id pipewire
+exec --no-startup-id pipewire-pulse
+exec --no-startup-id pipewire-media-session
