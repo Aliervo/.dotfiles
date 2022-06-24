@@ -19,8 +19,9 @@ prompt pure
 
 alias dotfiles="$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
+# Set PATH here instead of .zshenv else it will be over-written by /etc/profile
 typeset -U path PATH
-path=($VOLTA_HOME/bin $path)
+path=($VOLTA_HOME/bin $HOME/.local/bin $path)
 export PATH
 
 setopt sharehistory
