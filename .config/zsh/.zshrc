@@ -18,3 +18,7 @@ autoload -U promptinit; promptinit
 prompt pure
 
 alias dotfiles="$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+typeset -U path PATH
+path=($VOLTA_HOME/bin $path)
+export PATH
