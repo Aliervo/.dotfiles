@@ -241,7 +241,7 @@ bar {
 }
 
 #Set a pretty background
-exec_always --no-startup-id feh --bg-fill /home/aliervo/Pictures/wallpaper
+exec_always --no-startup-id feh --no-fehbg --bg-fill /home/aliervo/Pictures/wallpaper
 
 #Specific Window Rules
 for_window [class="tsmapplication"] floating enable
