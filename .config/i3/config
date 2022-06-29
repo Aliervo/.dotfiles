@@ -255,5 +255,6 @@ bindsym F12 [instance="Alacritty Dropdown"] scratchpad show
 
 #Start Pipewire with i3
 exec --no-startup-id pipewire
+exec --no-startup-id wireplumber
+exec --no-startup-id pipewire-alsa
 exec --no-startup-id pipewire-pulse
-exec --no-startup-id pipewire-media-session
