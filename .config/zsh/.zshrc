@@ -28,3 +28,6 @@ setopt sharehistory
 setopt histignoredups
 setopt histreduceblanks
 setopt histignorespace
+
+# Enable Nix
+source ~/.nix-profile/etc/profile.d/nix.sh
