@@ -30,4 +30,8 @@ setopt histreduceblanks
 setopt histignorespace
 
 # Enable Nix
-source ~/.nix-profile/etc/profile.d/nix.sh
+source $HOME/.nix-profile/etc/profile.d/nix.sh
+
+# Enable Nix Home Manager
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
