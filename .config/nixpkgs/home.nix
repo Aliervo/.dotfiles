@@ -6,6 +6,12 @@ with pkgs;{
   home.username = "aliervo";
   home.homeDirectory = "/home/aliervo";
 
+  # Packages that should be installed to the user profile.
+  home.packages = with pkgs; [
+    gomuks
+    authy
+  ];
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -19,12 +25,14 @@ with pkgs;{
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Allow unfree pkgs to be installed.
   nixpkgs.config.allowUnfree = true;
 
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    gomuks
-    authy
-  ];
-
+  # Git configuration
+  programs.git = {
+    enable = true;
+    aliases = { co = "checkout"; };
+    userEmail = "aliervo@wingedvengeance.net";
+    userName = "Aliervo";
+  };
 }
