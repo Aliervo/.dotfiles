@@ -14,6 +14,8 @@ with pkgs;{
     authy
     android-tools
     gh
+    bat
+    brave
   ];
 
   # This value determines the Home Manager release that your
