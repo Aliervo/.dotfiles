@@ -96,6 +96,8 @@ with pkgs;{
       ];
       shellAliases = {
         dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+        todo = "$(which todo.sh) ls -'X '";
+        do = "$(which todo.sh) do";
       };
     };
   };
