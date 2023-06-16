@@ -34,7 +34,7 @@
   
       programs = {
         alacritty = {
-	  enable = true;
+          enable = true;
           settings = {
             env.TERM = "xterm-256color";
             window.dynamic_title = true;
@@ -49,17 +49,17 @@
               # size = 11.0;
             };
           };
-	};
+        };
     
         direnv = {
           enable = true;
-	  nix-direnv.enable = true;
+          nix-direnv.enable = true;
         };
   
         git = {
           enable = true;
           aliases = { co = "checkout"; };
-          userEmail = "aliervo@wingedvengeance.net";
+          userEmail = "samfritz@protonmail.com";
           userName = "Aliervo";
         };
     
@@ -69,10 +69,12 @@
 
         rofi = {
           enable = true;
-	  package = pkgs.rofi-wayland;
-	  theme = "dmenu";
+          package = pkgs.rofi-wayland;
+          theme = "dmenu";
         };
     
+        swaylock.enable = true;
+
         zsh = {
           enable = true;
           autocd = true;
