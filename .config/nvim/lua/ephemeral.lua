@@ -2,17 +2,19 @@
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
---vim.opt.termguicolors = true
---vim.cmd("colorscheme solarized-flat")
+-- Bindings for zk.nvim
+local opts = { noremap = true, silent = false }
 
--- Set new telescope keymaps
---local builtin = require('telescope.builtin')
---vim.keymap.set('n', '<leader>ft', builtin.builtin, {})
+-- Create a new note after asking for its title.
+vim.api.nvim_set_keymap("n", "<leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", opts)
 
--- Change indent character
---require("indent_blankline").setup {
-  --char_list = { '|', '¦', '┆', '┊' },
-  --show_current_context = true,
-  --show_current_context_start = true,
-  --use_treesitter = true
---}
+-- Open notes.
+vim.api.nvim_set_keymap("n", "<leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", opts)
+-- Open notes associated with the selected tags.
+vim.api.nvim_set_keymap("n", "<leader>zt", "<Cmd>ZkTags<CR>", opts)
+
+-- Search for the notes matching a given query.
+vim.api.nvim_set_keymap("n", "<leader>zf",
+  "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>", opts)
+-- Search for the notes matching the current visual selection.
+vim.api.nvim_set_keymap("v", "<leader>zf", ":'<,'>ZkMatch<CR>", opts)
