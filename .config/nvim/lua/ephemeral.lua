@@ -1,7 +1,5 @@
 -- Use this file for quick nvim configuration changes without rebuilding nixVim
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
-
 -- Bindings for zk.nvim
 local opts = { noremap = true, silent = false }
 
