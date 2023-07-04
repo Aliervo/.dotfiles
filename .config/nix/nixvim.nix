@@ -38,6 +38,10 @@
     terminal."<Esc>".action = ''<C-\><C-n>'';
   };
 
+  options = {
+    foldlevel = 99;
+  };
+
   plugins = {
     comment-nvim.enable = true;
 
