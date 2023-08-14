@@ -148,12 +148,12 @@
 
   # Configure Fonts
   fonts = with pkgs; {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontconfig.defaultFonts = {
       monospace = [ "Victor Mono" ];
       emoji = [ "Noto Color Emoji" ];
     };
-    fonts = [ victor-mono noto-fonts-emoji ];
+    packages = [ victor-mono noto-fonts-emoji ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
