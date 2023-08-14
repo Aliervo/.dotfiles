@@ -16,3 +16,6 @@ vim.api.nvim_set_keymap("n", "<leader>zf",
   "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>", opts)
 -- Search for the notes matching the current visual selection.
 vim.api.nvim_set_keymap("v", "<leader>zf", ":'<,'>ZkMatch<CR>", opts)
+
+-- Set up parinfer
+-- require("parinfer-rust").setup()

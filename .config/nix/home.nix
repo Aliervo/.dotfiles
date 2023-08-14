@@ -1,6 +1,5 @@
 { config, pkgs, lib, inputs, ... }:
 {
-
   home-manager = {
     #extraSpecialArgs = { inherit pkgs; };
 
@@ -18,15 +17,20 @@
           anki-bin
           brave
           discord
+          eww-wayland
           exercism
           grafx2
           inkscape
           ledger
+          qt6.full
+          qtcreator
           rpg-cli
           spectre-cli
           steam
           swaynotificationcenter
           todo-txt-cli
+          wl-clipboard
+          wl-clipboard-x11
         ];
 
         sessionVariables = {

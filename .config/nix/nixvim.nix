@@ -20,8 +20,9 @@
     pkgs.ripgrep
   ];
 
-  extraPlugins = [
-    pkgs.vimPlugins.nvim-solarized-lua
+  extraPlugins = with pkgs.vimPlugins; [
+    nvim-solarized-lua
+    pkgs.kakounePlugins.parinfer-rust
   ];
 
   options = {
