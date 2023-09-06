@@ -22,8 +22,7 @@
           grafx2
           inkscape
           ledger
-          qt6.full
-          qtcreator
+          openscad
           rpg-cli
           spectre-cli
           steam
