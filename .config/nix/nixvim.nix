@@ -11,6 +11,11 @@
     }
   ];
 
+  clipboard = {
+    register = "unnamedplus";
+    providers.wl-copy.enable = true;
+  };
+  
   colorscheme = "solarized-flat";
 
   extraConfigLua = "require('ephemeral')";
