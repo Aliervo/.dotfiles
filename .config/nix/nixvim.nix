@@ -4,7 +4,7 @@
 
   autoCmd = [
     {
-      description = "Format files using LSP before saving.";
+      desc = "Format files using LSP before saving.";
       event = ["BufWritePre"];
       pattern = "*";
       command = "lua vim.lsp.buf.format()";
@@ -35,9 +35,38 @@
     termguicolors = true;
   };
 
-  maps = {
-    terminal."<Esc>".action = ''<C-\><C-n>'';
-  };
+  keymaps = [
+    {
+      options.desc = "Makes escape behave as expected in terminal mode.";
+      mode = "t";
+      key = "<Esc>";
+      action = ''<C-\><C-n>'';
+    }
+    {
+      options.desc = "zk.nvim: Open notes.";
+      mode = "n";
+      key = "<leader>zo";
+      action = "<Cmd>ZkNotes { sort = { 'modified' } }<CR>";
+    }
+    {
+      options.desc = "zk.nvim: Open notes associated with the selected tags.";
+      mode = "n";
+      key = "<leader>zt";
+      action = "<Cmd>ZkTags<CR>";
+    }
+    {
+      options.desc = "zk.nvim: Search for notes matching a given query.";
+      mode = "n";
+      key = "<leader>zf";
+      action = "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>";
+    }
+    {
+      options.desc = "zk.nvim: Search for the notes matching the current visual selection";
+      mode = "v";
+      key = "<leader>zf";
+      action = ":'<,'>ZkMatch<CR>";
+    }
+  ];
 
   options = {
     foldlevel = 99;
@@ -49,10 +78,7 @@
     indent-blankline = {
       enable = true;
 
-      charList = [ "|" "¦" "┆" "┊" ];
-      showCurrentContext = true;
-      showCurrentContextStart = true;
-      useTreesitter = true;
+      indent.char = [ "|" "¦" "┆" "┊" ];
     };
 
     lsp = {
