@@ -19,9 +19,11 @@
           discord
           eww-wayland
           exercism
+          ferium
           grafx2
           inkscape
           ledger
+          minecraft
           openscad
           rpg-cli
           spectre-cli
