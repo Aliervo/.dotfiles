@@ -31,7 +31,7 @@
     };
     menu = "${pkgs.rofi-wayland}/bin/rofi -show drun -modi 'drun,run'";
     startup = [
-      { command = "${pkgs.alacritty}/bin/alacritty --config-file ~/.config/alacritty/dropdown.yml -t 'Alacritty Dropdown'"; }
+      { command = "${pkgs.alacritty}/bin/alacritty --config-file ~/.config/alacritty/dropdown.toml -t 'Alacritty Dropdown'"; }
       { command = "${pkgs.swaynotificationcenter}/bin/swaync"; }
     ];
     window = {

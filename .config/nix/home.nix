@@ -2,6 +2,7 @@
 {
   home-manager = {
     #extraSpecialArgs = { inherit pkgs; };
+    backupFileExtension = ".bak";
 
     useGlobalPkgs = true;
     users.aliervo = { config, pkgs, ... }: {
@@ -17,13 +18,13 @@
           anki-bin
           brave
           discord
-          eww-wayland
+          eww
           exercism
           ferium
           grafx2
           inkscape
           ledger
-          minecraft
+          # minecraft
           openscad
           rpg-cli
           spectre-cli
@@ -167,7 +168,7 @@
       qt = {
         enable = true;
 
-        platformTheme = "gtk";
+        platformTheme.name = "gtk2";
       };
       # Let Home Manager control XDG Base Dirs
       xdg.enable = true;

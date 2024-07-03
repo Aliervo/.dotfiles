@@ -30,7 +30,7 @@
     pkgs.kakounePlugins.parinfer-rust
   ];
 
-  options = {
+  opts = {
     tabstop = 2;
     softtabstop = -1;
     shiftwidth = 0;
@@ -38,6 +38,7 @@
     smartindent = true;
     expandtab = true;
     termguicolors = true;
+    foldlevel = 99;
   };
 
   keymaps = [
@@ -73,17 +74,13 @@
     }
   ];
 
-  options = {
-    foldlevel = 99;
-  };
-
   plugins = {
-    comment-nvim.enable = true;
+    comment.enable = true;
 
     indent-blankline = {
       enable = true;
 
-      indent.char = [ "|" "¦" "┆" "┊" ];
+      settings.indent.char = [ "|" "¦" "┆" "┊" ];
     };
 
     lsp = {
