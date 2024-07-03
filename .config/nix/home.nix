@@ -34,6 +34,9 @@
           wl-clipboard
           wl-clipboard-x11
         ];
+        
+        # Make programs use XDG directories whenever supported.
+        preferXdgDirectories = true;
 
         sessionVariables = {
           TERMINAL = "alacritty";
