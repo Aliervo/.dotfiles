@@ -8,6 +8,10 @@
   };
 
   stylix = {
+    cursor = {
+      name = "phinger-cursors-light";
+      package = pkgs.phinger-cursors;
+    };
     image = ./nixos-wallpaper.png;
     polarity = "dark";
     fonts.monospace = {
