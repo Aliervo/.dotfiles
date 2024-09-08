@@ -8,6 +8,7 @@
     users.aliervo = { config, pkgs, ... }: {
       imports = [
         inputs.nixvim.homeManagerModules.nixvim
+        inputs.ags.homeManagerModules.default
       ];
   
       home = {
@@ -57,6 +58,11 @@
       };
 
       programs = {
+        ags = {
+          enable = true;
+          # configDir = "${config.xdg.configHome}/ags"; Doesn't work here for some reason
+        };
+
         alacritty = {
           enable = true;
           settings = {
@@ -173,8 +179,24 @@
 
         platformTheme.name = "gtk2";
       };
-      # Let Home Manager control XDG Base Dirs
-      xdg.enable = true;
+      
+      # Let Home Manager control XDG Base Dirs and Portal
+      xdg = {
+        enable = true;
+        portal = { 
+          enable = true;
+          config = {
+            common.default = [ "gtk" ];
+            sway.default = [ "wlr" "gtk" ];
+          };
+          extraPortals = with pkgs; [
+            xdg-desktop-portal-wlr
+            xdg-desktop-portal-gtk
+          ];
+          xdgOpenUsePortal = true; # Force xdg-open to use the portal
+        };
+
+      };
     };
   };
 }
