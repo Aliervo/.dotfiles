@@ -18,8 +18,7 @@
         packages = with pkgs; [
           anki-bin
           brave
-          discord
-          eww
+          # discord
           exercism
           ferium
           grafx2
@@ -32,6 +31,7 @@
           steam
           swaynotificationcenter
           todo-txt-cli
+          webcord # Replaces discord for better Wayland Support
           wl-clipboard
           wl-clipboard-x11
         ];
