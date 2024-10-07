@@ -1,4 +1,6 @@
 {
+  description = "NixOS system flake config for laptop and home server";
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
@@ -36,9 +38,18 @@
           base16.nixosModule
           home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
-          ./configuration.nix
+          ./common.nix
+          ./laptop.nix
           ./home.nix
           ./stylix.nix
+        ];
+      };
+      nixBrick = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./common.nix
+          ./server.nix
         ];
       };
     };
