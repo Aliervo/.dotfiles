@@ -16,7 +16,7 @@
     };
     bars = [ {
       position = "top";
-      statusCommand = "${pkgs.i3status}/bin/i3status";
+      statusCommand = "cd $XDG_DATA_HOME/luastatus && exec ${pkgs.luastatus}/bin/luastatus-i3-wrapper wireless.lua ip.lua backlight.lua battery.lua cpu-temperature.lua cpu-usage.lua mem-usage.lua time-date.lua";
     } ];
     keybindings = let controller = "${pkgs.wireplumber}/bin/wpctl";
     in lib.mkOptionDefault {
