@@ -31,7 +31,7 @@
     # Enable common container config files in /etc/containers
     containers = {
       enable = true;
-      storage.settings.driver = "btrfs";
+      storage.settings.storage.driver = "btrfs";
     };
 
     podman = {
