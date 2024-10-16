@@ -7,6 +7,11 @@
 
   networking = {
     hostName = "nixBrick";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [53 80];
+      allowedUDPPorts = [53];
+    };
     wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   };
 
