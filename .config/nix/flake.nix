@@ -36,7 +36,6 @@
         specialArgs = { inherit inputs; };
         modules = [
           base16.nixosModule
-          # home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
           ./common.nix
           ./laptop.nix
@@ -49,6 +48,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./common.nix
+          ./home.nix
           ./server.nix
         ];
       };
