@@ -8,6 +8,7 @@
   };
 
   stylix = {
+    enable = true;
     cursor = {
       name = "phinger-cursors-light";
       package = pkgs.phinger-cursors;

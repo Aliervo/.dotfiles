@@ -31,7 +31,7 @@
 
   outputs = { self, nixpkgs, ags, base16, home-manager, nixvim, stylix }@inputs: {
     nixosConfigurations = {
-      nixClam = nixpkgs.lib.nixosSystem {
+      nixClam = nixpkgs.lib.nixosSystem { # Laptop
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -39,16 +39,14 @@
           stylix.nixosModules.stylix
           ./common.nix
           ./laptop.nix
-          ./home.nix
           ./stylix.nix
         ];
       };
-      nixBrick = nixpkgs.lib.nixosSystem {
+      nixBrick = nixpkgs.lib.nixosSystem { # Server
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./common.nix
-          ./home.nix
           ./server.nix
         ];
       };

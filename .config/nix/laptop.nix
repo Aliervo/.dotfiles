@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-laptop.nix
+      ./home.nix
     ];
 
   # Additional hardware mounting configuration
@@ -50,8 +51,6 @@
     bluetooth.enable = true;
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
       extraPackages = with pkgs; [
         vaapiIntel
         vaapiVdpau
@@ -60,7 +59,9 @@
     };
 
     nvidia = {
+      # dynamicBoost.enable = true;
       modesetting.enable = true;
+      open = false;
 
       # Hybrid Graphics Settings
       prime = {
