@@ -49,7 +49,7 @@
 
   hardware = {
     bluetooth.enable = true;
-    opengl = {
+    graphics = {
       enable = true;
       extraPackages = with pkgs; [
         vaapiIntel
@@ -121,7 +121,7 @@
       monospace = [ "Victor Mono" ];
       emoji = [ "Noto Color Emoji" ];
     };
-    packages = [ victor-mono noto-fonts-emoji ];
+    packages = [ victor-mono noto-fonts-emoji nerdfonts ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

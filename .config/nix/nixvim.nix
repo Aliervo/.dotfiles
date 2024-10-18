@@ -93,15 +93,15 @@
         eslint.enable = true;
         html.enable = true;
         jsonls.enable = true;
-        lua-ls.enable = true;
+        lua_ls.enable = true;
         nil_ls.enable = true;
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = true;
           installRustc = true;
         };
         tailwindcss.enable = true;
-        tsserver.enable= true;
+        ts_ls.enable= true;
       };
     };
 
@@ -134,13 +134,18 @@
 
     treesitter = {
       enable = true;
-      indent = true;
+      settings = {
+        highlight.enable = true;
+        indent.enable = true;
+      };
       folding = true;
     };
 
+    web-devicons.enable = true;
+
     zk = {
       enable = true;
-      picker = "telescope";
+      settings.picker = "telescope";
     };
   };
 
