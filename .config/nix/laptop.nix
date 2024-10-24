@@ -51,6 +51,7 @@
     bluetooth.enable = true;
     graphics = {
       enable = true;
+      enable32Bit = true; # Needed for steam
       extraPackages = with pkgs; [
         vaapiIntel
         vaapiVdpau
