@@ -18,6 +18,7 @@
           ledger
           # minecraft
           openscad
+          podman-compose
           rpg-cli
           spectre-cli
           steam
