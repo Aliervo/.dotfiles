@@ -103,6 +103,53 @@
         tailwindcss.enable = true;
         ts_ls.enable= true;
       };
+
+      keymaps = {
+        diagnostic = {
+          "<leader>j" = "goto_next";
+          "<leader>k" = "goto_prev";
+        };
+        lspBuf = {
+          K = "hover";
+        };
+        extra = [
+          {
+            options.desc = "telescope.nvim: Goto definition";
+            action = {
+              __raw = "require('telescope.builtin').lsp_definitions";
+            };
+            key = "gd";
+          }
+          {
+            options.desc = "telescope.nvim: Goto definition";
+            action = {
+              __raw = "require('telescope.builtin').diagnostics";
+            };
+            key = "gh";
+          }
+          {
+            options.desc = "telescope.nvim: Goto implementation";
+            action = {
+              __raw = "require('telescope.builtin').lsp_implementations";
+            };
+            key = "gi";
+          }
+          {
+            options.desc = "telescope.nvim: Goto type references";
+            action = {
+              __raw = "require('telescope.builtin').lsp_references";
+            };
+            key = "gD";
+          } 
+          {
+            options.desc = "telescope.nvim: Goto type definitions";
+            action = {
+              __raw = "require('telescope.builtin').lsp_type_definitions";
+            };
+            key = "gt";
+          } 
+        ];
+      };
     };
 
     luasnip = {
