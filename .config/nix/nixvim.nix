@@ -67,6 +67,12 @@
       action = "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>";
     }
     {
+      options.desc = "zk.nvim: Create a new note after asking for its title.";
+      mode = "n";
+      key = "<leader>zn";
+      action = "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>";
+    }
+    {
       options.desc = "zk.nvim: Search for the notes matching the current visual selection";
       mode = "v";
       key = "<leader>zf";
@@ -121,7 +127,7 @@
             key = "gd";
           }
           {
-            options.desc = "telescope.nvim: Goto definition";
+            options.desc = "telescope.nvim: Goto diagnostics";
             action = {
               __raw = "require('telescope.builtin').diagnostics";
             };
