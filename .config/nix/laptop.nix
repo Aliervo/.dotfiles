@@ -155,6 +155,18 @@
       ];
     };
 
+    # BTRFS block level deduplication
+    beesd.filesystems = {
+      root = {
+        spec = "/";
+        extraOptions = [ "--loadavg-target" "5.0" ];
+      };
+      home = {
+        spec = "/home";
+        extraOptions = [ "--loadavg-target" "5.0" ];
+      };
+    };
+
     # Enable automatic login for the user.
     getty.autologinUser = "aliervo";
 
