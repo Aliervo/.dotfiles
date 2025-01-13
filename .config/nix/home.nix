@@ -10,11 +10,13 @@
         packages = with pkgs; [
           anki-bin
           brave
+          devenv
           # discord
-          exercism
-          ferium # cli-minecraft mod manager
-          grafx2 # pixel art program
-          inkscape
+          # exercism
+          # ferium # cli-minecraft mod manager
+          # grafx2 # pixel art program
+          heroic
+          # inkscape
           ledger
           # minecraft
           openscad
