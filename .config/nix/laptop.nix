@@ -136,6 +136,12 @@
   programs = {
     # Enable light for getting current brightness from terminal
     light.enable = true;
+
+    # Allow pre-compiled dynamically linked software to run
+    nix-ld = {
+      enable = true;
+      libraries = pkgs.steam-run.args.multiPkgs pkgs;
+    };
   };
 
   security = {
@@ -184,6 +190,34 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+
+      extraConfig.pipewire = {
+        "10-allowed-rates" = {
+          "context.properties" = {
+            "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 352800 384000 ];
+          };
+        };
+      };
+
+      wireplumber.extraConfig = {
+        "iFi-dac" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [
+                {
+                  "node.name" = "alsa_output.usb-iFi_iFi_USB_Audio_SE_iFi_USB_Audio_SE-00.analog-stereo";    
+                }
+              ];
+              actions = {
+                update-props = {
+                  # "audio.rate" = 384000;
+                  "priority.session" = 1010;
+                };
+              };
+            }
+          ];
+        };
+      };
     };
 
     # Power management with TLP and Upower
