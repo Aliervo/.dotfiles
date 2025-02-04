@@ -105,7 +105,7 @@
   users.users.aliervo = {
     isNormalUser = true;
     description = "Sam";
-    extraGroups = [ "wheel" /* "networkmanager" */ "video" ];
+    extraGroups = [ "gamemode"/* "networkmanager" */ "video" "wheel" ];
     shell = pkgs.zsh;
   };
 
@@ -122,7 +122,7 @@
       monospace = [ "Victor Mono" ];
       emoji = [ "Noto Color Emoji" ];
     };
-    packages = [ victor-mono noto-fonts-emoji nerdfonts ];
+    packages = [ victor-mono noto-fonts-emoji ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -134,6 +134,12 @@
   # };
 
   programs = {
+    # Enable GameMode to optimize the system when gaming
+    gamemode = {
+      enable = true;
+      settings = {};
+    };
+
     # Enable light for getting current brightness from terminal
     light.enable = true;
 
@@ -141,6 +147,11 @@
     nix-ld = {
       enable = true;
       libraries = pkgs.steam-run.args.multiPkgs pkgs;
+    };
+
+    steam = {
+      enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
   };
 

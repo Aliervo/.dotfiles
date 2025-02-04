@@ -23,7 +23,7 @@
           podman-compose
           rpg-cli
           spectre-cli
-          steam
+          # steam
           swaynotificationcenter
           todo-txt-cli
           webcord # Replaces discord for better Wayland Support
@@ -40,6 +40,7 @@
           TERMINAL = "alacritty";
           NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
           _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="${config.xdg.configHome}"/java'';
+          GAMEMODERUNEXEC = "nvidia-offload";
           GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
           PNPM_HOME = "${config.xdg.dataHome}/pnpm";
           ZK_NOTEBOOK_DIR = "${config.home.homeDirectory}/Sync/zettelkasten";
