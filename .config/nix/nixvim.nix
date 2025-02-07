@@ -16,7 +16,9 @@
     providers.wl-copy.enable = true;
   };
   
-  colorscheme = "solarized-flat";
+  # Broken right now work around with extraConfigLuaPost
+  # colorscheme = "solarized-flat";
+  extraConfigLuaPost = "vim.cmd [[ colorscheme solarized-flat ]]";
 
   extraConfigLua = "require('ephemeral')";
 
@@ -27,7 +29,7 @@
 
   extraPlugins = with pkgs.vimPlugins; [
     nvim-solarized-lua
-    pkgs.kakounePlugins.parinfer-rust
+    # pkgs.kakounePlugins.parinfer-rust
   ];
 
   opts = {
@@ -47,6 +49,30 @@
       mode = "t";
       key = "<Esc>";
       action = ''<C-\><C-n>'';
+    }
+    {
+      options.desc = "zellij-nav: Navigate left or tab";
+      mode = "n";
+      key = "<a-h>";
+      action = "<cmd>ZellijNavigateLeftTab<cr>";
+    }
+    {
+      options.desc = "zellij-nav: Navigate down";
+      mode = "n";
+      key = "<a-j>";
+      action = "<cmd>ZellijNavigateDown<cr>";
+    }
+    {
+      options.desc = "zellij-nav: Navigate up";
+      mode = "n";
+      key = "<a-k>";
+      action = "<cmd>ZellijNavigateUp<cr>";
+    }
+    {
+      options.desc = "zellij-nav: Navigate right or tab";
+      mode = "n";
+      key = "<a-l>";
+      action = "<cmd>ZellijNavigateRightTab<cr>";
     }
     {
       options.desc = "zk.nvim: Open notes.";
@@ -81,6 +107,21 @@
   ];
 
   plugins = {
+    cmp = {
+      enable = true;
+      # cmdline = {};
+      # filetype = {};
+      # luaConfig = {};
+      settings = {
+        sources = [
+          { name = "nvim_lsp"; }
+          { name = "luasnip"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+      };
+    };
+
     comment.enable = true;
 
     indent-blankline = {
@@ -198,6 +239,8 @@
     };
 
     web-devicons.enable = true;
+
+    zellij-nav.enable = true;
 
     zk = {
       enable = true;
