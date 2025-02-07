@@ -15,6 +15,7 @@
     shells = [pkgs.zsh];
     systemPackages = with pkgs; [
       htop
+      zellij
     ];
   };
 
