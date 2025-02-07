@@ -12,15 +12,18 @@
           brave
           devenv
           # discord
+          easyeffects
           # exercism
           # ferium # cli-minecraft mod manager
           # grafx2 # pixel art program
           heroic
           # inkscape
+          kdePackages.breeze-icons
           ledger
           # minecraft
           openscad
           podman-compose
+          qpwgraph
           rpg-cli
           spectre-cli
           # steam
@@ -100,7 +103,7 @@
 
       qt = {
         enable = true;
-        platformTheme.name = "gtk2";
+        # platformTheme.name = "gtk2";
       };
       
       # Let Home Manager control XDG Base Dirs and Portal
