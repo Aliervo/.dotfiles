@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     ags = {
       url = "github:Aylur/ags";
@@ -29,7 +30,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ags, base16, home-manager, nixvim, stylix }@inputs: {
+  outputs = { self, nixpkgs, ags, base16, chaotic, home-manager, nixvim, stylix }@inputs: {
     nixosConfigurations = {
       nixClam = nixpkgs.lib.nixosSystem { # Laptop
         system = "x86_64-linux";
@@ -37,6 +38,7 @@
         modules = [
           base16.nixosModule
           stylix.nixosModules.stylix
+          chaotic.nixosModules.default
           ./common.nix
           ./laptop.nix
           ./stylix.nix

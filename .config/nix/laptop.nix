@@ -41,8 +41,11 @@
 
     loader.efi.efiSysMountPoint = "/boot/efi";
 
-    # Use Zen Kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    # Use CachyOS Kernel
+    kernelPackages = pkgs.linuxPackages_cachyos;
+
+    # Configure swappiness
+    kernel.sysctl."vm.swappiness" = "10";
 
     tmp.useTmpfs = true;
   };
@@ -122,7 +125,7 @@
       monospace = [ "Victor Mono" ];
       emoji = [ "Noto Color Emoji" ];
     };
-    packages = [ victor-mono noto-fonts-emoji ];
+    packages = [ nerd-fonts.victor-mono noto-fonts-emoji ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -231,6 +234,11 @@
       };
     };
 
+    scx = {
+      enable = true;
+      scheduler = "scx_rusty";
+    };
+
     # Power management with TLP and Upower
     tlp.enable = true;
 
@@ -240,13 +248,30 @@
     xserver.videoDrivers = [ "nvidia" ];
   };
 
-  system.activationScripts = {
-    # Unblock wifi and bluetooth
+  systemd.services = {
     rfkillUnblock = {
-      text = ''
+      description = "Unblock wifi and bluetooth";
+      script = ''
         rfkill unblock all
       '';
-      deps = [];
+      wantedBy = [ "multi-user.target" ];
+    };
+
+    enableTHP = {
+      description = "Enable Transparent HugePages";
+      script =''
+        echo always > /sys/kernel/mm/transparent_hugepage/enabled
+        echo advise > /sys/kernel/mm/transparent_hugepage/shmem_enabled
+        echo 0 > /sys/kernel/mm/transparent_hugepage/khugepaged/defrag
+      '';
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig.Type = "oneshot";
+    };
+
+    adjustPageLockUnfairness = {
+      script = "echo 1 > /proc/sys/vm/page_lock_unfairness";
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig.Type = "oneshot";
     };
   };
 
