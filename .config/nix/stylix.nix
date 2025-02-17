@@ -9,17 +9,18 @@
 
   stylix = {
     enable = true;
+    base16Scheme = ./solarized-dark.yaml;
     cursor = {
       name = "phinger-cursors-light";
       package = pkgs.phinger-cursors;
     };
-    image = ./nixos-wallpaper.png;
-    polarity = "dark";
     fonts.monospace = {
       package = pkgs.victor-mono;
       name = "Victor Mono";
     };
-    base16Scheme = ./solarized-dark.yaml;
+    image = ./nixos-wallpaper.png;
+    polarity = "dark";
+    targets.nixvim.enable = false;
   };
 
   home-manager.sharedModules = [{
