@@ -13,6 +13,7 @@
     cursor = {
       name = "phinger-cursors-light";
       package = pkgs.phinger-cursors;
+      size = 32;
     };
     fonts.monospace = {
       package = pkgs.victor-mono;
