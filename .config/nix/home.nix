@@ -10,22 +10,29 @@
         packages = with pkgs; [
           anki-bin
           brave
+          carapace # shell agnostic completions
           devenv
           # discord
           easyeffects
           # exercism
           # ferium # cli-minecraft mod manager
+          foliate
           # grafx2 # pixel art program
           heroic
           # inkscape
           kdePackages.breeze-icons
           ledger
+          mangohud
+          mangojuice
           # minecraft
+          motrix
+          nushell
           openscad
           podman-compose
           qpwgraph
           rpg-cli
           spectre-cli
+          starship # Shell agnostic prompt
           # steam
           swaynotificationcenter
           todo-txt-cli
@@ -79,6 +86,10 @@
               # size = 11.0;
             };
           };
+        };
+
+        foot = {
+          enable = true;
         };
 
         rofi = {
