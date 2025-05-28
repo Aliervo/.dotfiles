@@ -44,6 +44,9 @@
     # Use CachyOS Kernel
     kernelPackages = pkgs.linuxPackages_cachyos;
 
+    # Enable zswap
+    kernelParams = [ "zswap.enabled=1" ];
+
     # Configure swappiness
     kernel.sysctl."vm.swappiness" = "10";
 
@@ -179,11 +182,11 @@
     beesd.filesystems = {
       root = {
         spec = "/";
-        extraOptions = [ "--loadavg-target" "5.0" ];
+        extraOptions = [ "--loadavg-target" "3.0" ];
       };
       home = {
         spec = "/home";
-        extraOptions = [ "--loadavg-target" "5.0" ];
+        extraOptions = [ "--loadavg-target" "3.0" ];
       };
     };
 
