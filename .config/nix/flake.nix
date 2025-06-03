@@ -44,10 +44,20 @@
           ./stylix.nix
         ];
       };
-      nixBrick = nixpkgs.lib.nixosSystem { # Server
+      barracuda = nixpkgs.lib.nixosSystem { # Big server
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          ./barracuda.nix
+          ./common.nix
+          ./server.nix
+        ];
+      };
+      catfish = nixpkgs.lib.nixosSystem { # Little server
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./catfish.nix
           ./common.nix
           ./server.nix
         ];

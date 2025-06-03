@@ -1,12 +1,7 @@
 { pkgs, ... }:
-{ # Server specific configuration
-
-  imports = [
-    ./hardware-server.nix
-  ];
+{ # Configuration common among my servers
 
   networking = {
-    hostName = "nixBrick";
     firewall = {
       enable = true;
       allowedTCPPorts = [53 80];
@@ -26,7 +21,7 @@
     isNormalUser = true;
     description = "Sam";
     extraGroups = ["wheel"];
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
     openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDiSwMVlGPTcUrCu0RQRvAtpmXQ1N+dHywg5QXAidYua samfritz@protonmail.com"
     ];
