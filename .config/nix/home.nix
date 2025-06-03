@@ -20,6 +20,7 @@
           # grafx2 # pixel art program
           heroic
           # inkscape
+          jujutsu
           kdePackages.breeze-icons
           ledger
           mangohud
