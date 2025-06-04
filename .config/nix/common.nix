@@ -31,7 +31,7 @@
       home = {
         username = "aliervo";
         preferXdgDirectories = true;
-        shellAliases.dotfiles = "$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+        shellAliases.dotfiles = "${pkgs.git}/bin/git --git-dir=${config.home.homeDirectory}/.dotfiles/ --work-tree=${config.home.homeDirectory}";
         stateVersion = "23.05";
       };
 
@@ -44,7 +44,7 @@
         git = {
           enable = true;
           aliases.co = "checkout";
-          userEmail = "samfritz@protonmail.com";
+          userEmail = "samfritz@proton.me";
           userName = "Aliervo";
         };
 
@@ -58,27 +58,12 @@
           dotDir = ".config/zsh";
           history.path = "${config.xdg.dataHome}/zsh/histfile";
 
-          initExtra = ''
-            # Initialise the prompt system and set prompt to Pure.
-            autoload -U promptinit; promptinit
-            prompt pure
-          '';
-
           loginExtra = ''
             # If running from tty1 start sway
             [ "$(tty)" = "/dev/tty1" ] && exec sway
           '';
 
           plugins = [
-            {
-              name = "pure";
-              src = pkgs.fetchFromGitHub {
-                owner = "sindresorhus";
-                repo = "pure";
-                rev = "v1.20.1";
-                sha256 = "iuLi0o++e0PqK81AKWfIbCV0CTIxq2Oki6U2oEYsr68=";
-              };
-            }
             {
               name = "zshrpg";
               file = "rpg.plugin.zsh";

@@ -10,9 +10,8 @@
         packages = with pkgs; [
           anki-bin
           brave
-          carapace # shell agnostic completions
-          devenv
           # discord
+          devenv
           easyeffects
           # exercism
           # ferium # cli-minecraft mod manager
@@ -27,13 +26,11 @@
           mangojuice
           # minecraft
           motrix
-          nushell
           openscad
           podman-compose
           qpwgraph
           rpg-cli
           spectre-cli
-          starship # Shell agnostic prompt
           # steam
           swaynotificationcenter
           todo-txt-cli
@@ -57,7 +54,12 @@
           ZK_NOTEBOOK_DIR = "${config.home.homeDirectory}/Sync/zettelkasten";
         };
 
-        shellAliases.todo = "$(which todo.sh)";
+        shell.enableShellIntegration = true;
+
+        shellAliases = {
+          dotfiles = "${pkgs.git}/bin/git --git-dir=${config.home.homeDirectory}/.dotfiles/ --work-tree=${config.home.homeDirectory}";
+          todo = "${pkgs.todo-txt-cli}/bin/todo.sh";
+        };
       };
   
       gtk = {
@@ -89,15 +91,27 @@
           };
         };
 
+        carapace.enable = true;
+
+        direnv = { # environment switcher
+          enable = true;
+          nix-direnv.enable = true;
+          # enableNushellIntegration = false; # disabled to manually work around bug.
+        };
+
         foot = {
           enable = true;
         };
+
+        nushell.enable = true;
 
         rofi = {
           enable = true;
           package = pkgs.rofi-wayland;
           theme = "dmenu";
         };
+
+        starship.enable = true;
 
         swaylock.enable = true;
       };
