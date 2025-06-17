@@ -26,6 +26,7 @@
           mangojuice
           # minecraft
           motrix
+          mpv
           openscad
           podman-compose
           qpwgraph
