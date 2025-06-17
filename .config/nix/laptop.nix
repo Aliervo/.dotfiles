@@ -255,7 +255,7 @@
     rfkillUnblock = {
       description = "Unblock wifi and bluetooth";
       script = ''
-        rfkill unblock all
+        /run/current-system/sw/bin/rfkill unblock all
       '';
       wantedBy = [ "multi-user.target" ];
     };
