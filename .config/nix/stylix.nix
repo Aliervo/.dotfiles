@@ -15,9 +15,12 @@
       package = pkgs.phinger-cursors;
       size = 32;
     };
-    fonts.monospace = {
-      package = pkgs.victor-mono;
-      name = "Victor Mono";
+    fonts = {
+      monospace = {
+        package = pkgs.victor-mono;
+        name = "Victor Mono";
+      };
+      sizes.terminal = 10;
     };
     image = ./nixos-wallpaper.png;
     polarity = "dark";
