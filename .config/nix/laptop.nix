@@ -182,11 +182,11 @@
     beesd.filesystems = {
       root = {
         spec = "/";
-        extraOptions = [ "--loadavg-target" "3.0" ];
+        extraOptions = [ "--loadavg-target" "5.0" ];
       };
       home = {
         spec = "/home";
-        extraOptions = [ "--loadavg-target" "3.0" ];
+        extraOptions = [ "--loadavg-target" "5.0" ];
       };
     };
 
@@ -206,7 +206,14 @@
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
+      jack.enable = true;
       pulse.enable = true;
+
+      /* extraLv2Packages = with pkgs; [
+        lsp-plugins
+        zam-plugins
+        calf
+      ]; */
 
       extraConfig.pipewire = {
         "10-allowed-rates" = {
@@ -276,6 +283,10 @@
       wantedBy = [ "multi-user.target" ];
       serviceConfig.Type = "oneshot";
     };
+
+    # Limit the Beesd IO
+    "beesd@root".serviceConfig.IOSchedulingClass = "idle";
+    "beesd@home".serviceConfig.IOSchedulingClass = "idle"; 
   };
 
   # This value determines the NixOS release from which the default
