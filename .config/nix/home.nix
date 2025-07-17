@@ -1,154 +1,175 @@
 { lib, inputs, ... }:
 {
   home-manager = {
-    users.aliervo = { config, pkgs, ... }: {
-      imports = [
-        inputs.ags.homeManagerModules.default
-      ];
-  
-      home = {
-        packages = with pkgs; [
-          anki-bin
-          brave
-          # discord
-          devenv
-          easyeffects
-          # exercism
-          # ferium # cli-minecraft mod manager
-          foliate
-          # grafx2 # pixel art program
-          heroic
-          # inkscape
-          jujutsu
-          kdePackages.breeze-icons
-          ledger
-          mangohud
-          mangojuice
-          # minecraft
-          motrix
-          mpv
-          openscad
-          podman-compose
-          qpwgraph
-          rpg-cli
-          spectre-cli
-          # steam
-          swaynotificationcenter
-          todo-txt-cli
-          webcord # Replaces discord for better Wayland Support
-          wl-clipboard
-          wl-clipboard-x11
-        ];
-        
-        sessionPath = [
-          "$PNPM_HOME"
-          "$HOME/.local/bin"
+    users.aliervo =
+      { config, pkgs, ... }:
+      {
+        imports = [
+          inputs.ags.homeManagerModules.default
         ];
 
-        sessionVariables = {
-          TERMINAL = "alacritty";
-          NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
-          _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="${config.xdg.configHome}"/java'';
-          GAMEMODERUNEXEC = "nvidia-offload";
-          GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
-          PNPM_HOME = "${config.xdg.dataHome}/pnpm";
-          ZK_NOTEBOOK_DIR = "${config.home.homeDirectory}/Sync/zettelkasten";
+        home = {
+          packages = with pkgs; [
+            anki-bin
+            brave
+            # carla
+            # calf
+            # lsp-plugins
+            # rnnoise-plugin
+            # zam-plugins
+            # discord
+            devenv
+            easyeffects
+            # exercism
+            # ferium # cli-minecraft mod manager
+            foliate
+            # grafx2 # pixel art program
+            heroic
+            # inkscape
+            jujutsu
+            kdePackages.breeze-icons
+            ledger
+            mangohud
+            mangojuice
+            # minecraft
+            motrix
+            mpv
+            openscad
+            podman-compose
+            qpwgraph
+            rpg-cli
+            spectre-cli
+            # steam
+            swaynotificationcenter
+            todo-txt-cli
+            webcord # Replaces discord for better Wayland Support
+            wl-clipboard
+            wl-clipboard-x11
+          ];
+
+          sessionPath = [
+            "$PNPM_HOME"
+            "$HOME/.local/bin"
+          ];
+
+          sessionVariables = {
+            TERMINAL = "alacritty";
+            NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
+            _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="${config.xdg.configHome}"/java'';
+            GAMEMODERUNEXEC = "nvidia-offload";
+            GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+            PNPM_HOME = "${config.xdg.dataHome}/pnpm";
+            ZK_NOTEBOOK_DIR = "${config.home.homeDirectory}/Sync/zettelkasten";
+          };
+
+          shell.enableShellIntegration = true;
+
+          shellAliases = {
+            dotfiles = "${pkgs.git}/bin/git --git-dir=${config.home.homeDirectory}/.dotfiles/ --work-tree=${config.home.homeDirectory}";
+            todo = "${pkgs.todo-txt-cli}/bin/todo.sh";
+          };
         };
 
-        shell.enableShellIntegration = true;
-
-        shellAliases = {
-          dotfiles = "${pkgs.git}/bin/git --git-dir=${config.home.homeDirectory}/.dotfiles/ --work-tree=${config.home.homeDirectory}";
-          todo = "${pkgs.todo-txt-cli}/bin/todo.sh";
-        };
-      };
-  
-      gtk = {
-        enable = true;
-        gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-      };
-
-      programs = {
-        ags = {
+        gtk = {
           enable = true;
-          # configDir = "${config.xdg.configHome}/ags"; Doesn't work here for some reason
+          gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
         };
 
-        alacritty = {
-          enable = true;
-          settings = {
-            env.TERM = "xterm-256color";
-            window.dynamic_title = true;
-            font = {
-              normal = {
-                family = "Victor Mono";
-                style = "Regular";
+        programs = {
+          ags = {
+            enable = true;
+            # configDir = "${config.xdg.configHome}/ags"; Doesn't work here for some reason
+          };
+
+          alacritty = {
+            enable = true;
+            settings = {
+              env.TERM = "xterm-256color";
+              window.dynamic_title = true;
+              font = {
+                normal = {
+                  family = "Victor Mono";
+                  style = "Regular";
+                };
+                bold.style = "Bold";
+                italic.style = "Italic";
+                bold_italic.style = "Bold Italic";
+                # size = 11.0;
               };
-              bold.style = "Bold";
-              italic.style = "Italic";
-              bold_italic.style = "Bold Italic";
-              # size = 11.0;
             };
           };
-        };
 
-        carapace.enable = true;
+          carapace.enable = true;
 
-        direnv = { # environment switcher
-          enable = true;
-          nix-direnv.enable = true;
-          # enableNushellIntegration = false; # disabled to manually work around bug.
-        };
-
-        foot = {
-          enable = true;
-        };
-
-        nushell.enable = true;
-
-        rofi = {
-          enable = true;
-          package = pkgs.rofi-wayland;
-          theme = "dmenu";
-        };
-
-        starship.enable = true;
-
-        swaylock.enable = true;
-      };
-  
-      services = {
-        swayidle = {
-          enable = true;
-          events = [
-            { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
-          ];
-        };
-      };
-  
-      wayland.windowManager.sway = import ./sway.nix { inherit lib pkgs; };
-
-      qt = {
-        enable = true;
-        # platformTheme.name = "gtk2";
-      };
-      
-      # Let Home Manager control XDG Base Dirs and Portal
-      xdg = {
-        enable = true;
-        portal = { 
-          enable = true;
-          config = {
-            common.default = [ "gtk" ];
-            sway.default = [ "wlr" "gtk" ];
+          direnv = {
+            # environment switcher
+            enable = true;
+            nix-direnv.enable = true;
+            # enableNushellIntegration = false; # disabled to manually work around bug.
           };
-          extraPortals = with pkgs; [
-            xdg-desktop-portal-wlr
-            xdg-desktop-portal-gtk
-          ];
-          xdgOpenUsePortal = true; # Force xdg-open to use the portal
+
+          foot = {
+            enable = true;
+            settings = {
+              main = {
+                shell = "${pkgs.zellij}/bin/zellij";
+                app-id = "foot";
+                initial-window-size-pixels = "1920x640";
+              };
+            };
+          };
+
+          nushell.enable = true;
+
+          rofi = {
+            enable = true;
+            package = pkgs.rofi-wayland;
+            theme = "dmenu";
+          };
+
+          starship.enable = true;
+
+          swaylock.enable = true;
+        };
+
+        services = {
+          swayidle = {
+            enable = true;
+            events = [
+              {
+                event = "before-sleep";
+                command = "${pkgs.swaylock}/bin/swaylock";
+              }
+            ];
+          };
+        };
+
+        wayland.windowManager.sway = import ./sway.nix { inherit lib pkgs; };
+
+        qt = {
+          enable = true;
+          # platformTheme.name = "gtk2";
+        };
+
+        # Let Home Manager control XDG Base Dirs and Portal
+        xdg = {
+          enable = true;
+          portal = {
+            enable = true;
+            config = {
+              common.default = [ "gtk" ];
+              sway.default = [
+                "wlr"
+                "gtk"
+              ];
+            };
+            extraPortals = with pkgs; [
+              xdg-desktop-portal-wlr
+              xdg-desktop-portal-gtk
+            ];
+            xdgOpenUsePortal = true; # Force xdg-open to use the portal
+          };
         };
       };
-    };
   };
 }
